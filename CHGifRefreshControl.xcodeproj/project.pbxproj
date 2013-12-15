@@ -1,0 +1,484 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		7717E855184B02DC00692550 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7717E854184B02DC00692550 /* Foundation.framework */; };
+		7717E857184B02DC00692550 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7717E856184B02DC00692550 /* CoreGraphics.framework */; };
+		7717E859184B02DC00692550 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7717E858184B02DC00692550 /* UIKit.framework */; };
+		7717E85F184B02DC00692550 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 7717E85D184B02DC00692550 /* InfoPlist.strings */; };
+		7717E861184B02DC00692550 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 7717E860184B02DC00692550 /* main.m */; };
+		7717E865184B02DC00692550 /* CHAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 7717E864184B02DC00692550 /* CHAppDelegate.m */; };
+		7717E86E184B02DC00692550 /* CHViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7717E86D184B02DC00692550 /* CHViewController.m */; };
+		7717E870184B02DC00692550 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7717E86F184B02DC00692550 /* Images.xcassets */; };
+		7717E877184B02DC00692550 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7717E876184B02DC00692550 /* XCTest.framework */; };
+		7717E878184B02DC00692550 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7717E854184B02DC00692550 /* Foundation.framework */; };
+		7717E879184B02DC00692550 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7717E858184B02DC00692550 /* UIKit.framework */; };
+		7717E881184B02DC00692550 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 7717E87F184B02DC00692550 /* InfoPlist.strings */; };
+		7717E883184B02DC00692550 /* CHGifRefreshControlTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 7717E882184B02DC00692550 /* CHGifRefreshControlTests.m */; };
+		77606133185E1500005424C0 /* UIScrollView+GifPullToRefresh.m in Sources */ = {isa = PBXBuildFile; fileRef = 77606132185E1500005424C0 /* UIScrollView+GifPullToRefresh.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		7717E87A184B02DC00692550 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 7717E849184B02DC00692550 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 7717E850184B02DC00692550;
+			remoteInfo = CHGifRefreshControl;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		7717E851184B02DC00692550 /* CHGifRefreshControl.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CHGifRefreshControl.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		7717E854184B02DC00692550 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		7717E856184B02DC00692550 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		7717E858184B02DC00692550 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		7717E85C184B02DC00692550 /* CHGifRefreshControl-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "CHGifRefreshControl-Info.plist"; sourceTree = "<group>"; };
+		7717E85E184B02DC00692550 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		7717E860184B02DC00692550 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		7717E862184B02DC00692550 /* CHGifRefreshControl-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "CHGifRefreshControl-Prefix.pch"; sourceTree = "<group>"; };
+		7717E863184B02DC00692550 /* CHAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CHAppDelegate.h; sourceTree = "<group>"; };
+		7717E864184B02DC00692550 /* CHAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CHAppDelegate.m; sourceTree = "<group>"; };
+		7717E86C184B02DC00692550 /* CHViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CHViewController.h; sourceTree = "<group>"; };
+		7717E86D184B02DC00692550 /* CHViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CHViewController.m; sourceTree = "<group>"; };
+		7717E86F184B02DC00692550 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		7717E875184B02DC00692550 /* CHGifRefreshControlTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CHGifRefreshControlTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		7717E876184B02DC00692550 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
+		7717E87E184B02DC00692550 /* CHGifRefreshControlTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "CHGifRefreshControlTests-Info.plist"; sourceTree = "<group>"; };
+		7717E880184B02DC00692550 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		7717E882184B02DC00692550 /* CHGifRefreshControlTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CHGifRefreshControlTests.m; sourceTree = "<group>"; };
+		77606131185E1500005424C0 /* UIScrollView+GifPullToRefresh.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIScrollView+GifPullToRefresh.h"; sourceTree = "<group>"; };
+		77606132185E1500005424C0 /* UIScrollView+GifPullToRefresh.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIScrollView+GifPullToRefresh.m"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		7717E84E184B02DC00692550 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				7717E857184B02DC00692550 /* CoreGraphics.framework in Frameworks */,
+				7717E859184B02DC00692550 /* UIKit.framework in Frameworks */,
+				7717E855184B02DC00692550 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		7717E872184B02DC00692550 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				7717E877184B02DC00692550 /* XCTest.framework in Frameworks */,
+				7717E879184B02DC00692550 /* UIKit.framework in Frameworks */,
+				7717E878184B02DC00692550 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		7717E848184B02DC00692550 = {
+			isa = PBXGroup;
+			children = (
+				7717E85A184B02DC00692550 /* CHGifRefreshControl */,
+				7717E87C184B02DC00692550 /* CHGifRefreshControlTests */,
+				7717E853184B02DC00692550 /* Frameworks */,
+				7717E852184B02DC00692550 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		7717E852184B02DC00692550 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				7717E851184B02DC00692550 /* CHGifRefreshControl.app */,
+				7717E875184B02DC00692550 /* CHGifRefreshControlTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		7717E853184B02DC00692550 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				7717E854184B02DC00692550 /* Foundation.framework */,
+				7717E856184B02DC00692550 /* CoreGraphics.framework */,
+				7717E858184B02DC00692550 /* UIKit.framework */,
+				7717E876184B02DC00692550 /* XCTest.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		7717E85A184B02DC00692550 /* CHGifRefreshControl */ = {
+			isa = PBXGroup;
+			children = (
+				77606130185E1500005424C0 /* CHGifRefreshControl */,
+				7717E863184B02DC00692550 /* CHAppDelegate.h */,
+				7717E864184B02DC00692550 /* CHAppDelegate.m */,
+				7717E86C184B02DC00692550 /* CHViewController.h */,
+				7717E86D184B02DC00692550 /* CHViewController.m */,
+				7717E86F184B02DC00692550 /* Images.xcassets */,
+				7717E85B184B02DC00692550 /* Supporting Files */,
+			);
+			path = CHGifRefreshControl;
+			sourceTree = "<group>";
+		};
+		7717E85B184B02DC00692550 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				7717E85C184B02DC00692550 /* CHGifRefreshControl-Info.plist */,
+				7717E85D184B02DC00692550 /* InfoPlist.strings */,
+				7717E860184B02DC00692550 /* main.m */,
+				7717E862184B02DC00692550 /* CHGifRefreshControl-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		7717E87C184B02DC00692550 /* CHGifRefreshControlTests */ = {
+			isa = PBXGroup;
+			children = (
+				7717E882184B02DC00692550 /* CHGifRefreshControlTests.m */,
+				7717E87D184B02DC00692550 /* Supporting Files */,
+			);
+			path = CHGifRefreshControlTests;
+			sourceTree = "<group>";
+		};
+		7717E87D184B02DC00692550 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				7717E87E184B02DC00692550 /* CHGifRefreshControlTests-Info.plist */,
+				7717E87F184B02DC00692550 /* InfoPlist.strings */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		77606130185E1500005424C0 /* CHGifRefreshControl */ = {
+			isa = PBXGroup;
+			children = (
+				77606131185E1500005424C0 /* UIScrollView+GifPullToRefresh.h */,
+				77606132185E1500005424C0 /* UIScrollView+GifPullToRefresh.m */,
+			);
+			path = CHGifRefreshControl;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		7717E850184B02DC00692550 /* CHGifRefreshControl */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 7717E886184B02DC00692550 /* Build configuration list for PBXNativeTarget "CHGifRefreshControl" */;
+			buildPhases = (
+				7717E84D184B02DC00692550 /* Sources */,
+				7717E84E184B02DC00692550 /* Frameworks */,
+				7717E84F184B02DC00692550 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = CHGifRefreshControl;
+			productName = CHGifRefreshControl;
+			productReference = 7717E851184B02DC00692550 /* CHGifRefreshControl.app */;
+			productType = "com.apple.product-type.application";
+		};
+		7717E874184B02DC00692550 /* CHGifRefreshControlTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 7717E889184B02DC00692550 /* Build configuration list for PBXNativeTarget "CHGifRefreshControlTests" */;
+			buildPhases = (
+				7717E871184B02DC00692550 /* Sources */,
+				7717E872184B02DC00692550 /* Frameworks */,
+				7717E873184B02DC00692550 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				7717E87B184B02DC00692550 /* PBXTargetDependency */,
+			);
+			name = CHGifRefreshControlTests;
+			productName = CHGifRefreshControlTests;
+			productReference = 7717E875184B02DC00692550 /* CHGifRefreshControlTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		7717E849184B02DC00692550 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				CLASSPREFIX = CH;
+				LastUpgradeCheck = 0500;
+				ORGANIZATIONNAME = HangChen;
+				TargetAttributes = {
+					7717E874184B02DC00692550 = {
+						TestTargetID = 7717E850184B02DC00692550;
+					};
+				};
+			};
+			buildConfigurationList = 7717E84C184B02DC00692550 /* Build configuration list for PBXProject "CHGifRefreshControl" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 7717E848184B02DC00692550;
+			productRefGroup = 7717E852184B02DC00692550 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				7717E850184B02DC00692550 /* CHGifRefreshControl */,
+				7717E874184B02DC00692550 /* CHGifRefreshControlTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		7717E84F184B02DC00692550 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				7717E870184B02DC00692550 /* Images.xcassets in Resources */,
+				7717E85F184B02DC00692550 /* InfoPlist.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		7717E873184B02DC00692550 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				7717E881184B02DC00692550 /* InfoPlist.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		7717E84D184B02DC00692550 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				7717E861184B02DC00692550 /* main.m in Sources */,
+				7717E865184B02DC00692550 /* CHAppDelegate.m in Sources */,
+				77606133185E1500005424C0 /* UIScrollView+GifPullToRefresh.m in Sources */,
+				7717E86E184B02DC00692550 /* CHViewController.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		7717E871184B02DC00692550 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				7717E883184B02DC00692550 /* CHGifRefreshControlTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		7717E87B184B02DC00692550 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 7717E850184B02DC00692550 /* CHGifRefreshControl */;
+			targetProxy = 7717E87A184B02DC00692550 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		7717E85D184B02DC00692550 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				7717E85E184B02DC00692550 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		7717E87F184B02DC00692550 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				7717E880184B02DC00692550 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		7717E884184B02DC00692550 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD)";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		7717E885184B02DC00692550 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD)";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				ENABLE_NS_ASSERTIONS = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		7717E887184B02DC00692550 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "CHGifRefreshControl/CHGifRefreshControl-Prefix.pch";
+				INFOPLIST_FILE = "CHGifRefreshControl/CHGifRefreshControl-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		7717E888184B02DC00692550 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "CHGifRefreshControl/CHGifRefreshControl-Prefix.pch";
+				INFOPLIST_FILE = "CHGifRefreshControl/CHGifRefreshControl-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+		7717E88A184B02DC00692550 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/CHGifRefreshControl.app/CHGifRefreshControl";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "CHGifRefreshControl/CHGifRefreshControl-Prefix.pch";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = "CHGifRefreshControlTests/CHGifRefreshControlTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = xctest;
+			};
+			name = Debug;
+		};
+		7717E88B184B02DC00692550 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/CHGifRefreshControl.app/CHGifRefreshControl";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "CHGifRefreshControl/CHGifRefreshControl-Prefix.pch";
+				INFOPLIST_FILE = "CHGifRefreshControlTests/CHGifRefreshControlTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = xctest;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		7717E84C184B02DC00692550 /* Build configuration list for PBXProject "CHGifRefreshControl" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				7717E884184B02DC00692550 /* Debug */,
+				7717E885184B02DC00692550 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		7717E886184B02DC00692550 /* Build configuration list for PBXNativeTarget "CHGifRefreshControl" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				7717E887184B02DC00692550 /* Debug */,
+				7717E888184B02DC00692550 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		7717E889184B02DC00692550 /* Build configuration list for PBXNativeTarget "CHGifRefreshControlTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				7717E88A184B02DC00692550 /* Debug */,
+				7717E88B184B02DC00692550 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 7717E849184B02DC00692550 /* Project object */;
+}

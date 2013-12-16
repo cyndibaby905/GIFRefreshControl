@@ -9,7 +9,7 @@
 #import "UIScrollView+GifPullToRefresh.h"
 #import <objc/runtime.h>
 
-#define GifRefreshControlHeight 100.0
+#define GifRefreshControlHeight 103.0
 
 typedef enum
 {
@@ -63,12 +63,16 @@ static char UIScrollViewGifPullToRefresh;
 @implementation CHGifRefreshControl {
     GifPullToRefreshState _state;
     BOOL _isTrigged;
+    UIImageView *_refreshView;
 }
 - (id)initWithFrame:(CGRect)frame
 {
     self = [super initWithFrame:frame];
     if (self) {
         self.backgroundColor = [UIColor yellowColor];
+        _refreshView = [[UIImageView alloc] initWithFrame:self.bounds];
+        _refreshView.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
+        [self addSubview:_refreshView];
     }
     return self;
 }
@@ -130,14 +134,19 @@ static char UIScrollViewGifPullToRefresh;
         offset = GifRefreshControlHeight;
     }
     percent = offset / GifRefreshControlHeight;
+    NSUInteger drawingIndex = percent * (self.drawingImgs.count - 1);
 	switch (aState)
 	{
             
         case GifPullToRefreshStateDrawing:
+            [_refreshView stopAnimating];
+            _refreshView.image = self.drawingImgs[drawingIndex];
+            
             break;
             
 		case GifPullToRefreshStateLoading:
-            NSLog(@"GifPullToRefreshStateLoading");
+            _refreshView.animationImages = self.loadingImgs;
+            [_refreshView startAnimating];
             break;
         case GifPullToRefreshStateNormal:
 		default:

@@ -13,6 +13,7 @@
 @property (nonatomic, copy) void (^pullToRefreshActionHandler)(void);
 @property (nonatomic, strong) NSArray *drawingImgs;
 @property (nonatomic, strong) NSArray *loadingImgs;
+@property (nonatomic, assign) CGFloat refreshControlHeight;
 - (void)endLoading;
 @end
 

@@ -9,6 +9,8 @@
 #import "CHViewController.h"
 #import "UIScrollView+GifPullToRefresh.h"
 
+
+
 @interface CHViewController ()
 
 @end
@@ -25,20 +27,32 @@
     scrollView.contentSize = CGSizeMake(self.view.bounds.size.width, self.view.bounds.size.height);
     __weak UIScrollView *tempScrollView = scrollView;
     
-    NSMutableArray *drawingImgs = [NSMutableArray array];
-    NSMutableArray *loadingImgs = [NSMutableArray array];
+    NSMutableArray *TwitterMusicDrawingImgs = [NSMutableArray array];
+    NSMutableArray *TwitterMusicLoadingImgs = [NSMutableArray array];
     for (NSUInteger i  = 0; i <= 73; i++) {
         NSString *fileName = [NSString stringWithFormat:@"PullToRefresh_%03d.png",i];
-        [drawingImgs addObject:[UIImage imageNamed:fileName]];
+        [TwitterMusicDrawingImgs addObject:[UIImage imageNamed:fileName]];
     }
     
     for (NSUInteger i  = 73; i <= 140; i++) {
         NSString *fileName = [NSString stringWithFormat:@"PullToRefresh_%03d.png",i];
-        [loadingImgs addObject:[UIImage imageNamed:fileName]];
+        [TwitterMusicLoadingImgs addObject:[UIImage imageNamed:fileName]];
+    }
+    
+    NSMutableArray *YahooWeatherDrawingImgs = [NSMutableArray array];
+    NSMutableArray *YahooWeatherLoadingImgs = [NSMutableArray array];
+    for (NSUInteger i  = 0; i <= 27; i++) {
+        NSString *fileName = [NSString stringWithFormat:@"sun_%05d.png",i];
+        [YahooWeatherDrawingImgs addObject:[UIImage imageNamed:fileName]];
+    }
+    
+    for (NSUInteger i  = 42; i <= 109; i++) {
+        NSString *fileName = [NSString stringWithFormat:@"sun_%05d.png",i];
+        [YahooWeatherLoadingImgs addObject:[UIImage imageNamed:fileName]];
     }
     
     
-    [scrollView addPullToRefreshWithDrawingImgs:drawingImgs andLoadingImgs:loadingImgs andActionHandler:^{
+    [scrollView addPullToRefreshWithDrawingImgs:YahooWeatherDrawingImgs andLoadingImgs:YahooWeatherLoadingImgs andActionHandler:^{
         [tempScrollView performSelector:@selector(didFinishPullToRefresh) withObject:nil afterDelay:3];
 
     }];

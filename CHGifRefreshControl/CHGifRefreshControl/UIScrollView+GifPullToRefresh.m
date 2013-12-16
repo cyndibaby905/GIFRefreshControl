@@ -23,6 +23,7 @@ typedef enum
 static char UIScrollViewGifPullToRefresh;
 @implementation UIScrollView (GifPullToRefresh)
 
+
 - (void)setRefreshControl:(CHGifRefreshControl *)pullToRefreshView {
     [self willChangeValueForKey:@"UIScrollViewGifPullToRefresh"];
     objc_setAssociatedObject(self, &UIScrollViewGifPullToRefresh,
@@ -41,16 +42,16 @@ static char UIScrollViewGifPullToRefresh;
     view.scrollView = self;
     [self addSubview:view];
     self.refreshControl = view;
-
+    self.refreshControl.pullToRefreshActionHandler = actionHandler;
     [self addObserver:view forKeyPath:@"contentOffset" options:NSKeyValueObservingOptionNew context:nil];
-    
+    [self addObserver:view forKeyPath:@"pan.state" options:NSKeyValueObservingOptionNew context:nil];
     
 }
 
 
-- (void)didFinishRefresh
+- (void)didFinishPullToRefresh
 {
-
+    [self.refreshControl endLoading];
 }
 
 
@@ -73,43 +74,46 @@ static char UIScrollViewGifPullToRefresh;
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
 {
     if (self.scrollView.contentOffset.y <= 0) {
-        [self scrollViewContentOffsetChanged];
-    }
-
-}
-
-- (void)scrollViewContentOffsetChanged
-{
-    if (!_isTrigged) {
-        if (!self.scrollView.isDragging && self.scrollView.isDecelerating && self.scrollView.contentOffset.y < -GifRefreshControlHeight) {
-            _isTrigged = YES;
-            [self setState:GifPullToRefreshStateLoading];
-            [UIView animateWithDuration:0.2
-                                  delay:0
-                                options:UIViewAnimationOptionAllowUserInteraction|UIViewAnimationOptionBeginFromCurrentState
-                             animations:^{
-                                 self.scrollView.contentInset = UIEdgeInsetsMake(GifRefreshControlHeight, 0.0f, 0.0f, 0.0f);
-                             }
-                             completion:nil];
-            
-            double delayInSeconds = 5.0;
-            dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delayInSeconds * NSEC_PER_SEC));
-            dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
-                _isTrigged = NO;
+        if ([keyPath isEqualToString:@"pan.state"]) {
+            if (self.scrollView.panGestureRecognizer.state == UIGestureRecognizerStateEnded && _isTrigged) {
+                [self setState:GifPullToRefreshStateLoading];
                 [UIView animateWithDuration:0.2
                                       delay:0
                                     options:UIViewAnimationOptionAllowUserInteraction|UIViewAnimationOptionBeginFromCurrentState
                                  animations:^{
-                                     self.scrollView.contentInset = UIEdgeInsetsMake(0, 0.0f, 0.0f, 0.0f);
+                                     self.scrollView.contentOffset = CGPointMake(0, -GifRefreshControlHeight);
+                                     self.scrollView.contentInset = UIEdgeInsetsMake(GifRefreshControlHeight, 0.0f, 0.0f, 0.0f);
+                                     
+                                     
                                  }
-                                 completion:nil];
-            });
+                                 completion:^(BOOL finished) {
+                                     if (self.pullToRefreshActionHandler) {
+                                         self.pullToRefreshActionHandler();
+                                     }
+                                 }];
+            }
         }
         else {
+            [self scrollViewContentOffsetChanged];
+        }
+    }
+    
+}
+
+- (void)scrollViewContentOffsetChanged
+{
+    if (_state != GifPullToRefreshStateLoading) {
+        if (self.scrollView.isDragging && self.scrollView.contentOffset.y < -GifRefreshControlHeight && !_isTrigged) {
+            _isTrigged = YES;
+        }
+        else {
+            if (self.scrollView.isDragging && self.scrollView.contentOffset.y > -GifRefreshControlHeight) {
+                _isTrigged = NO;
+            }
             [self setState:GifPullToRefreshStateDrawing];
         }
-        
     }
+    
 }
 
 
@@ -126,9 +130,8 @@ static char UIScrollViewGifPullToRefresh;
     percent = offset / GifRefreshControlHeight;
 	switch (aState)
 	{
-
+            
         case GifPullToRefreshStateDrawing:
-            NSLog(@"GifPullToRefreshStateDrawing:%f",percent);
             break;
             
 		case GifPullToRefreshStateLoading:
@@ -143,6 +146,21 @@ static char UIScrollViewGifPullToRefresh;
 	
     
     [self setNeedsLayout];
+}
+
+- (void)endLoading
+{
+    if (_state == GifPullToRefreshStateLoading) {
+        _isTrigged = NO;
+        [self setState:GifPullToRefreshStateDrawing];
+        [UIView animateWithDuration:0.2
+                              delay:0
+                            options:UIViewAnimationOptionAllowUserInteraction|UIViewAnimationOptionBeginFromCurrentState
+                         animations:^{
+                             self.scrollView.contentInset = UIEdgeInsetsMake(0, 0.0f, 0.0f, 0.0f);
+                         }
+                         completion:nil];
+    }
 }
 
 

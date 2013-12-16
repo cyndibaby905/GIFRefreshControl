@@ -10,13 +10,15 @@
 
 @interface CHGifRefreshControl : UIView
 @property (nonatomic, weak) UIScrollView *scrollView;
+@property (nonatomic, copy) void (^pullToRefreshActionHandler)(void);
+- (void)endLoading;
 @end
 
 @interface UIScrollView (GifPullToRefresh)
 @property(nonatomic,strong)CHGifRefreshControl *refreshControl;
 
 - (void)addPullToRefreshWithActionHandler:(void (^)(void))actionHandler;
-- (void)didFinishRefresh;
+- (void)didFinishPullToRefresh;
 @end
 
 

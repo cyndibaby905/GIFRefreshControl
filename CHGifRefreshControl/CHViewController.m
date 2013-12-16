@@ -23,8 +23,10 @@
     UIScrollView *scrollView = [[UIScrollView alloc] initWithFrame:self.view.bounds];
     scrollView.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
     scrollView.contentSize = CGSizeMake(self.view.bounds.size.width, self.view.bounds.size.height);
+    __weak UIScrollView *tempScrollView = scrollView;
     [scrollView addPullToRefreshWithActionHandler:^{
         
+        [tempScrollView performSelector:@selector(didFinishPullToRefresh) withObject:nil afterDelay:3];
     }];
     scrollView.alwaysBounceVertical = YES;
     scrollView.backgroundColor = [UIColor greenColor];

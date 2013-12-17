@@ -55,6 +55,12 @@
 
 @implementation CHTableViewController
 
+- (void)viewDidLoad
+{
+    [super viewDidLoad];
+    self.title = @"GIF Refresh Control";
+}
+
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     return CHGIFAnimationDict.count;
@@ -96,7 +102,7 @@
     }
     controller.loadingImgs = loadingImgs;
     controller.drawingImgs = drawingImgs;
-    
+    controller.title = CHGIFAnimationDict[indexPath.row][@"name"];
     [self.navigationController pushViewController:controller animated:YES];
 }
 @end

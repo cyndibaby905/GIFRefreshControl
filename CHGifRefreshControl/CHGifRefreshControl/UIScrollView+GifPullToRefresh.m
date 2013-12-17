@@ -3,8 +3,26 @@
 //  CHGifRefreshControl
 //
 //  Created by HangChen on 12/1/13.
-//  Copyright (c) 2013 HangChen. All rights reserved.
+//  Copyright (c) 2013 Hang Chen (https://github.com/cyndibaby905)
 //
+//  Permission is hereby granted, free of charge, to any person obtaining a copy
+//  of this software and associated documentation files (the "Software"), to deal
+//  in the Software without restriction, including without limitation the rights
+//  to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+//  copies of the Software, and to permit persons to whom the Software is
+//  furnished to do so, subject to the following conditions:
+//
+//  The above copyright notice and this permission notice shall be included in
+//  all copies or substantial portions of the Software.
+//
+//  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+//  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+//  FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+//  AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+//  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+//  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+//  THE SOFTWARE.
+
 
 #import "UIScrollView+GifPullToRefresh.h"
 #import <objc/runtime.h>
@@ -13,8 +31,7 @@
 
 typedef enum
 {
-	GifPullToRefreshStateNormal = 0,
-    GifPullToRefreshStateDrawing,
+    GifPullToRefreshStateDrawing = 0,
 	GifPullToRefreshStateLoading,
 } GifPullToRefreshState;
 
@@ -108,13 +125,9 @@ static char UIScrollViewGifPullToRefresh;
                                  animations:^{
                                      self.scrollView.contentOffset = CGPointMake(0, -GifRefreshControlHeight - self.originalContentInsectY);
                                      self.scrollView.contentInset = UIEdgeInsetsMake(GifRefreshControlHeight + self.originalContentInsectY, 0.0f, 0.0f, 0.0f);
-                                     
-                                     
-                                     
-                                     
+ 
                                  }
                                  completion:^(BOOL finished) {
-
                                      if (self.pullToRefreshActionHandler) {
                                          self.pullToRefreshActionHandler();
                                      }
@@ -142,7 +155,6 @@ static char UIScrollViewGifPullToRefresh;
             [self setState:GifPullToRefreshStateDrawing];
         }
     }
-    
 }
 
 
@@ -172,15 +184,12 @@ static char UIScrollViewGifPullToRefresh;
             _refreshView.animationDuration = (CGFloat)self.loadingImgs.count/20.0;
             [_refreshView startAnimating];
             break;
-        case GifPullToRefreshStateNormal:
 		default:
             break;
 	}
 	
 	_state = aState;
 	
-    
-   // [self setNeedsLayout];
 }
 
 - (void)endLoading
@@ -196,9 +205,7 @@ static char UIScrollViewGifPullToRefresh;
                          animations:^{
                              self.scrollView.contentInset = UIEdgeInsetsMake(self.originalContentInsectY, 0.0f, 0.0f, 0.0f);
                          }
-                         completion:^(BOOL finished) {
-
-                         }];
+                         completion:nil];
     }
 }
 

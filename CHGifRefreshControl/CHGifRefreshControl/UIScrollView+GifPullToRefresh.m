@@ -38,10 +38,12 @@ static char UIScrollViewGifPullToRefresh;
 
 - (void)addPullToRefreshWithDrawingImgs:(NSArray*)drawingImgs andLoadingImgs:(NSArray*)loadingImgs andActionHandler:(void (^)(void))actionHandler
 {
-    self.contentOffset = CGPointMake(0, 0);
-
+    
     CHGifRefreshControl *view = [[CHGifRefreshControl alloc] initWithFrame:CGRectMake(0, -GifRefreshControlHeight, self.bounds.size.width, GifRefreshControlHeight)];
-    view.originalContentInsectY = self.contentInset.top;
+    if ([[UIDevice currentDevice].systemVersion floatValue] >= 7.0) {
+        view.originalContentInsectY = 64;
+    }
+        
     view.scrollView = self;
     view.pullToRefreshActionHandler = actionHandler;
     view.drawingImgs = drawingImgs;

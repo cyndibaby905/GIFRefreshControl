@@ -63,15 +63,7 @@
     }
     
     
-    if ([[UIDevice currentDevice].systemVersion floatValue] >= 7.0) {
-        scrollView.contentInset = UIEdgeInsetsMake(64, 0, 0, 0);
-        scrollView.contentSize = CGSizeMake(self.view.bounds.size.width, self.view.bounds.size.height - 64);
-    }
-    else {
-        scrollView.contentSize = CGSizeMake(self.view.bounds.size.width, self.view.bounds.size.height);
-        scrollView.contentOffset = CGPointMake(0, 0);
-        
-    }
+
     
     [scrollView addPullToRefreshWithDrawingImgs:drawingImgs andLoadingImgs:loadingImgs andActionHandler:^{
         [tempScrollView performSelector:@selector(didFinishPullToRefresh) withObject:nil afterDelay:3];

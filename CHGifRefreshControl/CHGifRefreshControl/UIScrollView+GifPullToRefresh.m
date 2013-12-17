@@ -50,9 +50,6 @@ static char UIScrollViewGifPullToRefresh;
     view.loadingImgs = loadingImgs;
     [self addSubview:view];
     self.refreshControl = view;
-    [self addObserver:view forKeyPath:@"contentOffset" options:NSKeyValueObservingOptionNew context:nil];
-    [self addObserver:view forKeyPath:@"pan.state" options:NSKeyValueObservingOptionNew context:nil];
-    
 }
 
 
@@ -76,11 +73,27 @@ static char UIScrollViewGifPullToRefresh;
     if (self) {
         self.backgroundColor = [UIColor blackColor];
         _refreshView = [[UIImageView alloc] initWithFrame:self.bounds];
-        _refreshView.contentMode = UIViewContentModeCenter;
+        _refreshView.contentMode = UIViewContentModeScaleAspectFit;
         _refreshView.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
         [self addSubview:_refreshView];
     }
     return self;
+}
+
+- (void)dealloc
+{
+    [_scrollView removeObserver:self forKeyPath:@"contentOffset"];
+    [_scrollView removeObserver:self forKeyPath:@"pan.state"];
+}
+
+- (void)setScrollView:(UIScrollView *)scrollView
+{
+    
+    [_scrollView removeObserver:self forKeyPath:@"contentOffset"];
+    [_scrollView removeObserver:self forKeyPath:@"pan.state"];
+    _scrollView = scrollView;
+    [_scrollView addObserver:self forKeyPath:@"contentOffset" options:NSKeyValueObservingOptionNew context:nil];
+    [_scrollView addObserver:self forKeyPath:@"pan.state" options:NSKeyValueObservingOptionNew context:nil];
 }
 
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
@@ -156,6 +169,7 @@ static char UIScrollViewGifPullToRefresh;
             
 		case GifPullToRefreshStateLoading:
             _refreshView.animationImages = self.loadingImgs;
+            _refreshView.animationDuration = (CGFloat)self.loadingImgs.count/20.0;
             [_refreshView startAnimating];
             break;
         case GifPullToRefreshStateNormal:

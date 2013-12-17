@@ -8,7 +8,14 @@
 
 #import "CHViewController.h"
 #import "UIScrollView+GifPullToRefresh.h"
-
+#define CHGIFAnimationDict @[\
+@{@"name":@"Twitter Music Style",@"pattern":@"PullToRefresh_%03d.png",@"drawingStart":@0,@"drawingEnd":@73,@"loadingStart":@73,@"loadingEnd":@140},\
+@{@"name":@"Yahoo! Weather Style",@"pattern":@"sun_%05d.png",@"drawingStart":@0,@"drawingEnd":@27,@"loadingStart":@42,@"loadingEnd":@109},\
+@{@"name":@"Chrome Style",@"pattern":@"chrome-%d.png",@"drawingStart":@0,@"drawingEnd":@70,@"loadingStart":@70,@"loadingEnd":@107},\
+@{@"name":@"Universe Style",@"pattern":@"stars-%d.png",@"drawingStart":@0,@"drawingEnd":@50,@"loadingStart":@50,@"loadingEnd":@84},\
+@{@"name":@"Mac OSX Style",@"pattern":@"macOSX-%d.png",@"drawingStart":@0,@"drawingEnd":@63,@"loadingStart":@0,@"loadingEnd":@63},\
+@{@"name":@"Windows Style",@"pattern":@"windows-%d.png",@"drawingStart":@0,@"drawingEnd":@24,@"loadingStart":@0,@"loadingEnd":@24}\
+]
 
 
 @interface CHViewController ()
@@ -27,45 +34,7 @@
     scrollView.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
     __weak UIScrollView *tempScrollView = scrollView;
     
-    NSMutableArray *TwitterMusicDrawingImgs = [NSMutableArray array];
-    NSMutableArray *TwitterMusicLoadingImgs = [NSMutableArray array];
-    for (NSUInteger i  = 0; i <= 73; i++) {
-        NSString *fileName = [NSString stringWithFormat:@"PullToRefresh_%03d.png",i];
-        [TwitterMusicDrawingImgs addObject:[UIImage imageNamed:fileName]];
-    }
-    
-    for (NSUInteger i  = 73; i <= 140; i++) {
-        NSString *fileName = [NSString stringWithFormat:@"PullToRefresh_%03d.png",i];
-        [TwitterMusicLoadingImgs addObject:[UIImage imageNamed:fileName]];
-    }
-    
-    NSMutableArray *YahooWeatherDrawingImgs = [NSMutableArray array];
-    NSMutableArray *YahooWeatherLoadingImgs = [NSMutableArray array];
-    for (NSUInteger i  = 0; i <= 27; i++) {
-        NSString *fileName = [NSString stringWithFormat:@"sun_%05d.png",i];
-        [YahooWeatherDrawingImgs addObject:[UIImage imageNamed:fileName]];
-    }
-    
-    for (NSUInteger i  = 42; i <= 109; i++) {
-        NSString *fileName = [NSString stringWithFormat:@"sun_%05d.png",i];
-        [YahooWeatherLoadingImgs addObject:[UIImage imageNamed:fileName]];
-    }
-    
-    NSArray *drawingImgs = nil;
-    NSArray *loadingImgs = nil;
-    if (self.style == CHGifRefreshControlStyleTwitterMusic) {
-        drawingImgs = TwitterMusicDrawingImgs;
-        loadingImgs = TwitterMusicLoadingImgs;
-    }
-    else {
-        drawingImgs = YahooWeatherDrawingImgs;
-        loadingImgs = YahooWeatherLoadingImgs;
-    }
-    
-    
-
-    
-    [scrollView addPullToRefreshWithDrawingImgs:drawingImgs andLoadingImgs:loadingImgs andActionHandler:^{
+    [scrollView addPullToRefreshWithDrawingImgs:self.drawingImgs andLoadingImgs:self.loadingImgs andActionHandler:^{
         [tempScrollView performSelector:@selector(didFinishPullToRefresh) withObject:nil afterDelay:3];
 
     }];
@@ -88,7 +57,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 2;
+    return CHGIFAnimationDict.count;
 }
 
 
@@ -98,13 +67,10 @@
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
     if (!cell) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
-        if (!indexPath.row) {
-            cell.textLabel.text = @"Twitter Music Style";
-        }
-        else {
-            cell.textLabel.text = @"Yahoo! Weather Style";
-        }
+        
     }
+    cell.textLabel.text = CHGIFAnimationDict[indexPath.row][@"name"];
+
     return cell;
 }
 
@@ -112,12 +78,25 @@
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     CHViewController *controller = [[CHViewController alloc] init];
-    if (!indexPath.row) {
-        controller.style = CHGifRefreshControlStyleTwitterMusic;
+    NSMutableArray *drawingImgs = [NSMutableArray array];
+    NSMutableArray *loadingImgs = [NSMutableArray array];
+    NSUInteger drawingStart = [CHGIFAnimationDict[indexPath.row][@"drawingStart"] intValue];
+    NSUInteger drawingEnd = [CHGIFAnimationDict[indexPath.row][@"drawingEnd"] intValue];
+    NSUInteger laodingStart = [CHGIFAnimationDict[indexPath.row][@"loadingStart"] intValue];
+    NSUInteger loadingEnd = [CHGIFAnimationDict[indexPath.row][@"loadingEnd"] intValue];
+    
+    for (NSUInteger i  = drawingStart; i <= drawingEnd; i++) {
+        NSString *fileName = [NSString stringWithFormat:CHGIFAnimationDict[indexPath.row][@"pattern"],i];
+        [drawingImgs addObject:[UIImage imageNamed:fileName]];
     }
-    else {
-        controller.style = CHGifRefreshControlStyleYahooWeather;
+    
+    for (NSUInteger i  = laodingStart; i <= loadingEnd; i++) {
+        NSString *fileName = [NSString stringWithFormat:CHGIFAnimationDict[indexPath.row][@"pattern"],i];
+        [loadingImgs addObject:[UIImage imageNamed:fileName]];
     }
+    controller.loadingImgs = loadingImgs;
+    controller.drawingImgs = drawingImgs;
+    
     [self.navigationController pushViewController:controller animated:YES];
 }
 @end

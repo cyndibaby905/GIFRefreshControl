@@ -7,15 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
-typedef enum {
-    CHGifRefreshControlStyleTwitterMusic,
-    CHGifRefreshControlStyleYahooWeather
-}CHGifRefreshControlStyle;
 
 @interface CHTableViewController : UITableViewController
 
 @end
 
 @interface CHViewController : UIViewController
-@property (nonatomic, assign)CHGifRefreshControlStyle style;
+@property (nonatomic, strong)NSArray *loadingImgs;
+@property (nonatomic, strong)NSArray *drawingImgs;
 @end

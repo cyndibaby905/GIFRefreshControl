@@ -23,8 +23,8 @@
 	// Do any additional setup after loading the view, typically from a nib.
     self.view.backgroundColor = [UIColor redColor];
     UIScrollView *scrollView = [[UIScrollView alloc] initWithFrame:self.view.bounds];
+    
     scrollView.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
-    scrollView.contentSize = CGSizeMake(self.view.bounds.size.width, self.view.bounds.size.height);
     __weak UIScrollView *tempScrollView = scrollView;
     
     NSMutableArray *TwitterMusicDrawingImgs = [NSMutableArray array];
@@ -51,8 +51,29 @@
         [YahooWeatherLoadingImgs addObject:[UIImage imageNamed:fileName]];
     }
     
+    NSArray *drawingImgs = nil;
+    NSArray *loadingImgs = nil;
+    if (self.style == CHGifRefreshControlStyleTwitterMusic) {
+        drawingImgs = TwitterMusicDrawingImgs;
+        loadingImgs = TwitterMusicLoadingImgs;
+    }
+    else {
+        drawingImgs = YahooWeatherDrawingImgs;
+        loadingImgs = YahooWeatherLoadingImgs;
+    }
     
-    [scrollView addPullToRefreshWithDrawingImgs:YahooWeatherDrawingImgs andLoadingImgs:YahooWeatherLoadingImgs andActionHandler:^{
+    
+    if ([[UIDevice currentDevice].systemVersion floatValue] >= 7.0) {
+        scrollView.contentInset = UIEdgeInsetsMake(64, 0, 0, 0);
+        scrollView.contentSize = CGSizeMake(self.view.bounds.size.width, self.view.bounds.size.height - 64);
+    }
+    else {
+        scrollView.contentSize = CGSizeMake(self.view.bounds.size.width, self.view.bounds.size.height);
+        scrollView.contentOffset = CGPointMake(0, 0);
+        
+    }
+    
+    [scrollView addPullToRefreshWithDrawingImgs:drawingImgs andLoadingImgs:loadingImgs andActionHandler:^{
         [tempScrollView performSelector:@selector(didFinishPullToRefresh) withObject:nil afterDelay:3];
 
     }];
@@ -69,4 +90,42 @@
     // Dispose of any resources that can be recreated.
 }
 
+@end
+
+@implementation CHTableViewController
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    return 2;
+}
+
+
+- (UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    NSString *cellIdentifier = @"Cell";
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
+    if (!cell) {
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
+        if (!indexPath.row) {
+            cell.textLabel.text = @"Twitter Music Style";
+        }
+        else {
+            cell.textLabel.text = @"Yahoo! Weather Style";
+        }
+    }
+    return cell;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    CHViewController *controller = [[CHViewController alloc] init];
+    if (!indexPath.row) {
+        controller.style = CHGifRefreshControlStyleTwitterMusic;
+    }
+    else {
+        controller.style = CHGifRefreshControlStyleYahooWeather;
+    }
+    [self.navigationController pushViewController:controller animated:YES];
+}
 @end

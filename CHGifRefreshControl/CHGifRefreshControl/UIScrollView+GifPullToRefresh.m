@@ -38,7 +38,10 @@ static char UIScrollViewGifPullToRefresh;
 
 - (void)addPullToRefreshWithDrawingImgs:(NSArray*)drawingImgs andLoadingImgs:(NSArray*)loadingImgs andActionHandler:(void (^)(void))actionHandler
 {
+    self.contentOffset = CGPointMake(0, 0);
+
     CHGifRefreshControl *view = [[CHGifRefreshControl alloc] initWithFrame:CGRectMake(0, -GifRefreshControlHeight, self.bounds.size.width, GifRefreshControlHeight)];
+    view.originalContentInsectY = self.contentInset.top;
     view.scrollView = self;
     view.pullToRefreshActionHandler = actionHandler;
     view.drawingImgs = drawingImgs;
@@ -80,7 +83,7 @@ static char UIScrollViewGifPullToRefresh;
 
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
 {
-    if (self.scrollView.contentOffset.y <= 0) {
+    if (self.scrollView.contentOffset.y + self.originalContentInsectY <= 0) {
         if ([keyPath isEqualToString:@"pan.state"]) {
             if (self.scrollView.panGestureRecognizer.state == UIGestureRecognizerStateEnded && _isTrigged) {
                 [self setState:GifPullToRefreshStateLoading];
@@ -88,21 +91,25 @@ static char UIScrollViewGifPullToRefresh;
                                       delay:0
                                     options:UIViewAnimationOptionAllowUserInteraction|UIViewAnimationOptionBeginFromCurrentState
                                  animations:^{
-                                     self.scrollView.contentOffset = CGPointMake(0, -GifRefreshControlHeight);
-                                     self.scrollView.contentInset = UIEdgeInsetsMake(GifRefreshControlHeight, 0.0f, 0.0f, 0.0f);
+                                     self.scrollView.contentOffset = CGPointMake(0, -GifRefreshControlHeight - self.originalContentInsectY);
+                                     self.scrollView.contentInset = UIEdgeInsetsMake(GifRefreshControlHeight + self.originalContentInsectY, 0.0f, 0.0f, 0.0f);
+                                     
+                                     
                                      
                                      
                                  }
                                  completion:^(BOOL finished) {
+
                                      if (self.pullToRefreshActionHandler) {
                                          self.pullToRefreshActionHandler();
                                      }
                                  }];
             }
         }
-        else {
+        else if([keyPath isEqualToString:@"contentOffset"]){
             [self scrollViewContentOffsetChanged];
         }
+       
     }
     
 }
@@ -110,11 +117,11 @@ static char UIScrollViewGifPullToRefresh;
 - (void)scrollViewContentOffsetChanged
 {
     if (_state != GifPullToRefreshStateLoading) {
-        if (self.scrollView.isDragging && self.scrollView.contentOffset.y < -GifRefreshControlHeight && !_isTrigged) {
+        if (self.scrollView.isDragging && self.scrollView.contentOffset.y + self.originalContentInsectY < -GifRefreshControlHeight && !_isTrigged) {
             _isTrigged = YES;
         }
         else {
-            if (self.scrollView.isDragging && self.scrollView.contentOffset.y > -GifRefreshControlHeight) {
+            if (self.scrollView.isDragging && self.scrollView.contentOffset.y + self.originalContentInsectY > -GifRefreshControlHeight) {
                 _isTrigged = NO;
             }
             [self setState:GifPullToRefreshStateDrawing];
@@ -126,7 +133,7 @@ static char UIScrollViewGifPullToRefresh;
 
 - (void)setState:(GifPullToRefreshState)aState{
 	
-	CGFloat offset = -self.scrollView.contentOffset.y;
+	CGFloat offset = -(self.scrollView.contentOffset.y + self.originalContentInsectY);
     CGFloat percent = 0;
     if (offset < 0) {
         offset = 0;
@@ -157,21 +164,25 @@ static char UIScrollViewGifPullToRefresh;
 	_state = aState;
 	
     
-    [self setNeedsLayout];
+   // [self setNeedsLayout];
 }
 
 - (void)endLoading
 {
     if (_state == GifPullToRefreshStateLoading) {
         _isTrigged = NO;
+
         [self setState:GifPullToRefreshStateDrawing];
+        
         [UIView animateWithDuration:0.2
                               delay:0
                             options:UIViewAnimationOptionAllowUserInteraction|UIViewAnimationOptionBeginFromCurrentState
                          animations:^{
-                             self.scrollView.contentInset = UIEdgeInsetsMake(0, 0.0f, 0.0f, 0.0f);
+                             self.scrollView.contentInset = UIEdgeInsetsMake(self.originalContentInsectY, 0.0f, 0.0f, 0.0f);
                          }
-                         completion:nil];
+                         completion:^(BOOL finished) {
+
+                         }];
     }
 }
 

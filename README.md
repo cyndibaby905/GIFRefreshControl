@@ -64,6 +64,10 @@ Make sure to install ImageMagick and ghostscript first, you can use brew to simp
 ![CHGifRefreshControl] (https://raw.github.com/cyndibaby905/GIFRefreshControl/master/MacOSX.gif)
 ![CHGifRefreshControl] (https://raw.github.com/cyndibaby905/GIFRefreshControl/master/Windows.gif)
 
+## Known issues ##
+
+CHGifRefreshControl assumes the scrollView's `contentInset` is `UIEdgeInsetsMake(64.0f, 0.0f, 0.0f, 0.0f)` in iOS 7 and `UIEdgeInsetsMake(0.0f, 0.0f, 0.0f, 0.0f)` in iOS 6. If this doesn't work for your project, you can modify the `originalContentInsectY` property in `CHGifRefreshControl` class. And I will make this step automatically later.
+
 ## Lincense ##
 
 CHGifRefreshControl is available under the MIT license. See the LICENSE file for more info.

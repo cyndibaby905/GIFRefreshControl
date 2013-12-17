@@ -36,6 +36,7 @@ No other frameworks required.
         NSString *fileName = [NSString stringWithFormat:@"PullToRefresh_%03d.png",i];
         [TwitterMusicLoadingImgs addObject:[UIImage imageNamed:fileName]];
     }
+    __weak UIScrollView *tempScrollView = scrollView;
     [scrollView addPullToRefreshWithDrawingImgs:TwitterMusicDrawingImgs andLoadingImgs:TwitterMusicLoadingImgs andActionHandler:^{
     	//Do your own work when refreshing, and don't forget to end the animation after work finished.
         [tempScrollView performSelector:@selector(didFinishPullToRefresh) withObject:nil afterDelay:3];

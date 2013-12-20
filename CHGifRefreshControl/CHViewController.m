@@ -56,7 +56,7 @@
 
     }];
     scrollView.alwaysBounceVertical = YES;
-    scrollView.backgroundColor = [UIColor greenColor];
+    scrollView.backgroundColor = [UIColor whiteColor];
     [self.view addSubview:scrollView];
     
     

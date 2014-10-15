@@ -29,6 +29,10 @@
 
 #define GifRefreshControlHeight 103.0
 
+@interface CHGifRefreshControl()
+- (void)removeObservers;
+@end
+
 typedef enum
 {
     GifPullToRefreshStateDrawing = 0,
@@ -69,6 +73,12 @@ static char UIScrollViewGifPullToRefresh;
     self.refreshControl = view;
 }
 
+- (void)removePullToRefresh
+{
+    [self.refreshControl removeObservers];
+}
+
+
 
 - (void)didFinishPullToRefresh
 {
@@ -99,15 +109,21 @@ static char UIScrollViewGifPullToRefresh;
 
 - (void)dealloc
 {
+    [self removeObservers];
+}
+
+- (void)removeObservers
+{
     [_scrollView removeObserver:self forKeyPath:@"contentOffset"];
     [_scrollView removeObserver:self forKeyPath:@"pan.state"];
+    _scrollView = nil;
 }
+
 
 - (void)setScrollView:(UIScrollView *)scrollView
 {
     
-    [_scrollView removeObserver:self forKeyPath:@"contentOffset"];
-    [_scrollView removeObserver:self forKeyPath:@"pan.state"];
+    [self removeObservers];
     _scrollView = scrollView;
     [_scrollView addObserver:self forKeyPath:@"contentOffset" options:NSKeyValueObservingOptionNew context:nil];
     [_scrollView addObserver:self forKeyPath:@"pan.state" options:NSKeyValueObservingOptionNew context:nil];

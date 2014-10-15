@@ -38,6 +38,7 @@
 @property(nonatomic,strong)CHGifRefreshControl *refreshControl;
 
 - (void)addPullToRefreshWithDrawingImgs:(NSArray*)drawingImgs andLoadingImgs:(NSArray*)loadingImgs andActionHandler:(void (^)(void))actionHandler;
+- (void)removePullToRefresh;
 - (void)didFinishPullToRefresh;
 @end
 

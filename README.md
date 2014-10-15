@@ -42,6 +42,9 @@ No other frameworks required.
         [tempScrollView performSelector:@selector(didFinishPullToRefresh) withObject:nil afterDelay:3];
 
     }];
+And do not forget to remove it in your viewController's `dealloc` method:
+
+    [scrollView removePullToRefresh];
 
     
 ## Tips ##

@@ -40,11 +40,13 @@
 @end
 
 @implementation CHViewController
-
+{
+    UIScrollView *_scrollview;
+}
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-	// Do any additional setup after loading the view, typically from a nib.
+    // Do any additional setup after loading the view, typically from a nib.
     self.view.backgroundColor = [UIColor redColor];
     UIScrollView *scrollView = [[UIScrollView alloc] initWithFrame:self.view.bounds];
     
@@ -58,8 +60,13 @@
     scrollView.alwaysBounceVertical = YES;
     scrollView.backgroundColor = [UIColor whiteColor];
     [self.view addSubview:scrollView];
+    _scrollview = scrollView;
     
-    
+}
+
+- (void)dealloc
+{
+    [_scrollview removePullToRefresh];
 }
 
 - (void)didReceiveMemoryWarning
